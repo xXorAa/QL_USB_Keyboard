@@ -215,7 +215,7 @@ USB     Usb;
 // If Hub support required:
 // USBHub     Hub(&Usb);
 
-HIDBoot<HID_PROTOCOL_KEYBOARD>    HidKeyboard(&Usb);
+HIDBoot<USB_HID_PROTOCOL_KEYBOARD>    HidKeyboard(&Usb);
 
 KbdRptParser KbdPrs;
 
