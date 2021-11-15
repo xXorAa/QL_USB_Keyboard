@@ -6,3 +6,5 @@ debug :
 release :
 	arduino-cli compile -b arduino:avr:uno --export-binaries --output-dir release USB_keyboard.ino
 
+run-debug : debug
+	arduino-cli upload --fqbn arduino:avr:uno --input-dir debug --port /dev/ttyACM0
