@@ -1,3 +1,4 @@
+#include <SoftwareSerial.h>
 #include <hidboot.h>
 #include <usbhub.h>
 #include <TimerOne.h>
@@ -12,6 +13,9 @@
 // PD0 == RXI point on board edge
 // PD1 == TXO point on board edge
 // Can run soft serial on these for debugging purposes
+#ifdef DEBUG
+SoftwareSerial myserial(0, 1);
+#endif
 
 // Strobe is used to clock gate changes to the 8808 switch matrix
 const byte strobe = PD2;
@@ -223,6 +227,15 @@ void setup()
 {
   int i = 0;
   int j = 0;
+
+#ifdef DEBUG
+// Setup Serial
+  pinMode(0, INPUT);
+  pinMode(1, OUTPUT);
+  myserial.begin(115200);
+  myserial.println("Booting");
+#endif
+
   pinMode( data, OUTPUT);
   pinMode( strobe, OUTPUT);
   pinMode( reset, OUTPUT);
